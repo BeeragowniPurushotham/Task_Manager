@@ -3,19 +3,19 @@ import json
 
 # Define the Task class
 class Task:
-    """
-    Class to represent a task with attributes:
-    - id (int): Task ID
-    - title (str): Task title
-    - completed (bool): Status indicating if the task is completed
-    """
+    
+    # Class to represent a task with attributes:
+    #  id (int): Task ID
+    #  title (str): Task title
+    #  completed (bool): Status indicating if the task is completed
+    
     def __init__(self, task_id, title, completed=False):
         self.id = task_id
         self.title = title
         self.completed = completed
 
     def to_dict(self):
-        """Convert task object to dictionary for JSON serialization."""
+        # Convert task object to dictionary for JSON serialization.
         return {"id": self.id, "title": self.title, "completed": self.completed}
 
     @staticmethod
@@ -29,7 +29,7 @@ tasks = []
 
 # Load tasks from a file
 def load_tasks():
-    """Load tasks from tasks.json file if it exists."""
+    # Load tasks from tasks.json file if it exists.
     global tasks
     try:
         with open("tasks.json", "r") as file:
@@ -42,14 +42,14 @@ def load_tasks():
         print("Error: Failed to decode tasks from tasks.json.")
 
 
-# Save tasks to a file
+# Save tasks to a file 
 def save_tasks():
-    """Save current tasks list to tasks.json file."""
+    # Save current tasks list to tasks.json file.
     with open("tasks.json", "w") as file:
         json.dump([task.to_dict() for task in tasks], file)
 
 
-# Add a new task
+# Add a new task here we create a function of Add task
 def add_task(title):
     """
     Add a new task to the task list.
@@ -64,9 +64,9 @@ def add_task(title):
     print(f"Task '{title}' added with ID {task_id}.")
 
 
-# View all tasks
+# View all tasks Whatever we Added Data
 def view_tasks():
-    """Display all tasks with their IDs, titles, and completion status."""
+    # Display all tasks with their IDs, titles, and completion status.
     if not tasks:
         print("No tasks found.")
     else:
@@ -75,27 +75,26 @@ def view_tasks():
             print(f"ID: {task.id}, Title: '{task.title}', Status: {status}")
 
 
-# Delete a task by ID
+# Delete a task by ID Based on Task Add
 def delete_task(task_id):
-    """
-    Delete a task by its ID.
+
+    # Delete a task by its ID.
+    # Parameters:
+    #  task_id (int): The ID of the task to delete
     
-    Parameters:
-    - task_id (int): The ID of the task to delete
-    """
     global tasks
     tasks = [task for task in tasks if task.id != task_id]
     save_tasks()
     print(f"Task with ID {task_id} deleted.")
 
 
-# Mark a task as complete by ID
+# Mark a task as complete by ID After Adding The Particular Task
 def mark_task_as_complete(task_id):
-    """
-    Mark a task as completed by its ID.
-    Parameters:
-    - task_id (int): The ID of the task to mark as complete
-    """
+    
+    # Mark a task as completed by its ID.
+    # Parameters:
+    # task_id (int): The ID of the task to mark as complete
+
     for task in tasks:
         if task.id == task_id:
             task.completed = True
@@ -105,12 +104,12 @@ def mark_task_as_complete(task_id):
     print(f"Task with ID {task_id} not found.")
 
 
-# Main command-line interface loop
+# Main command-line interface loop to enter the choice here
 def main():
-    """Main function to handle the CLI interface for task management."""
+    # Main function to handle the CLI interface for task management.
     load_tasks()
     while True:
-        # Display menu options
+        # Display menu options here 
         print("\nTask Manager CLI")
         print("1. Add Task")
         print("2. View Tasks")
@@ -143,6 +142,6 @@ def main():
         else:
             print("Invalid choice. Please select a valid option.")
 
-# Run the main loop
+# Run the main loop here 
 if __name__ == "__main__":
     main()
